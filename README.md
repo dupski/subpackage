@@ -29,7 +29,7 @@ to your parent project's `package.json` file:
 
 ## Run an npm command across all sub-packages - subpkg
 
-To use `subpkg-run`, add it to the `scripts` entry in your parent project's
+To use `subpkg`, add it to the `scripts` entry in your parent project's
 `package.json`:
 
 ```json

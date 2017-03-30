@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Run npm scripts in sub-packages",
   "bin": {
-    "subpkg-run": "subpkg-run.js"
+    "subpkg": "subpkg.js"
   },
   "repository": {
     "type": "git",
