@@ -1,4 +1,4 @@
-# Subpackage - Utilities for managing NodeJS projects with sub-packages
+# Subpackage - Utility for managing NodeJS projects with sub-packages
 
 ## Overview
 
