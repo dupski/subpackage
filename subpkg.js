@@ -3,6 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 var spawnSync = require('cross-spawn').sync;
+var hasYarn = require('has-yarn');
 
 var envSetterRegex = /(\w+)=('(.+)'|"(.+)"|(.+))/;
 var envUseUnixRegex = /\$(\w+)/g; // $my_var
@@ -52,15 +53,16 @@ if (c.commandArgs.length) {
       throw new Error('No "subPackages" entry found in package.json.');
   }
 
-  console.log('Running npm', process.argv.slice(2).join(' '), 'for', subPackages.length, 'packages...');
+  console.log('Running\x1b[36m', process.argv.slice(2).join(' '), '\x1b[0mfor', subPackages.length, 'packages...');
 
   for (var i=0; i<subPackages.length; i++) {
     var subPkgPath = path.join(process.cwd(), subPackages[i])
     var subPkgJson = require(path.join(subPkgPath, 'package.json'));
+    var subPkgCmd = hasYarn(subPkgPath) ? 'yarn' : 'npm';
 
-    console.log(subPkgJson.name + '...');
+    console.log('Package \x1b[34m' + subPkgJson.name + '\x1b[0m ...');
 
-    var result = spawnSync('npm', c.commandArgs, {
+    var result = spawnSync(subPkgCmd, c.commandArgs, {
       stdio: 'inherit',
       env: c.envVars,
       cwd: path.resolve(subPkgPath)

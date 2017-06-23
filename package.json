@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/dupski/subpackage",
   "dependencies": {
-    "cross-spawn": "^5.1.0"
+    "cross-spawn": "^5.1.0",
+    "has-yarn": "^1.0.0"
   }
 }
