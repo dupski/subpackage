@@ -4,8 +4,11 @@
 
 Designed for use with NodeJS projects made up of multiple sub-projects.
 
-Allows you run npm scripts in multiple sub-projects (e.g. run `npm install`
-and `npm run build` across multiple projects)
+Allows you run scripts defined in `package.json` across multiple sub-projects
+(e.g. run `npm install` and `npm run build` across multiple projects)
+
+Supports `npm` or `yarn` (thanks to @mateuszluczak). Yarn is detected via
+the presence of a yarn.lock file.
 
 ## Set up
 
@@ -27,10 +30,10 @@ to your parent project's `package.json` file:
 }
 ```
 
-## Run an npm command across all sub-packages - subpkg
+## Running a command across all sub-packages
 
-To use `subpkg`, add it to the `scripts` entry in your parent project's
-`package.json`:
+To use `subpkg`, add it to the start of `scripts` entries in your parent project's
+`package.json` file:
 
 ```json
   "scripts": {
@@ -39,8 +42,8 @@ To use `subpkg`, add it to the `scripts` entry in your parent project's
   }
 ```
 
-The above will run `npm install` or `npm run build` for each of the packages defined in the
-`subPackages` entry
+With the configuration above in your parent project, you can type `npm run build`
+(or `yarn run build`) to build all sub-packages.
 
 ## Related Projects
 
