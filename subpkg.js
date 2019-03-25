@@ -22,6 +22,11 @@ function commandConvert(command) {
 function getCommandArgsAndEnvVars(args) {
   var command;
   var envVars = Object.assign({}, process.env);
+  var options = {};
+  if (args[0] === '-c' || args[0] === '--continue') {
+    options.continue = true;
+    args.shift();
+  }
   var commandArgs = args.map(commandConvert);
   while (commandArgs.length) {
     var shifted = commandArgs.shift();
@@ -39,7 +44,8 @@ function getCommandArgsAndEnvVars(args) {
   commandArgs.unshift(command);
   return {
     commandArgs: commandArgs,
-    envVars: envVars
+    envVars: envVars,
+    options: options
   };
 }
 
@@ -67,7 +73,7 @@ if (c.commandArgs.length) {
       env: c.envVars,
       cwd: path.resolve(subPkgPath)
     });
-    if (result.status != 0) {
+    if (result.status != 0 && !c.options.continue) {
       process.exit(result.status);
     }
   }
